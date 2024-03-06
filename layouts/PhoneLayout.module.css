@@ -85,3 +85,35 @@
     align-items: center;
     min-height: 100vh; /* Ensure the container takes up the full height of the viewport */
   }
+
+  @media screen and (max-width: 768px) {
+    .iphone {
+      width: auto; /* Allow the container to expand */
+      height: auto; /* Adjust height based on content */
+      background: none; /* Remove the background */
+      border-radius: 0; /* Remove the border radius */
+      padding: 0; /* Reset padding */
+      box-shadow: none; /* Remove the shadow */
+      border: none; /* Remove the border */
+      align-items: stretch; /* Stretch items to fill */
+    }
+  
+    .iphoneNotch {
+      display: none; /* Hide the notch */
+    }
+  
+    .iphoneContent {
+      width: 100%; /* Use the full width */
+      height: auto; /* Height based on content */
+      background-color: transparent; /* Optional: Adjust background */
+      overflow-y: visible; /* Adjust overflow */
+      border-radius: 0; /* Reset border radius */
+    }
+  
+    /* Adjust the container if necessary */
+    .container {
+      display: flex;
+      flex-direction: column; /* Stack children vertically */
+      align-items: stretch; /* Stretch items to fill the width */
+    }
+  }
