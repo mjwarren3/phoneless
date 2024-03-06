@@ -3,6 +3,7 @@ import { products } from '@/data/products'; // Adjust based on your data fetchin
 import { Product } from '@/interfaces/Product';
 import PhoneLayout from '@/layouts/layout';
 import { ChevronLeft, MoveLeft } from 'lucide-react';
+import Link from 'next/link';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = products.map(product => ({
@@ -43,7 +44,7 @@ function capitalizeFirstLetter(string: string) {
         <PhoneLayout>
             <div className="w-full grid grid-cols-1 gap-4 px-4 py-8">
                 <div className="grid grid-cols-3">
-                    <a className="flex items-center text-xs w-full text-center" href="/"><ChevronLeft size={20} />Home</a>
+                    <Link className="flex items-center text-xs w-full text-center" href="/"><ChevronLeft size={20} />Home</Link>
                     <p className="text-slate-700 font-semibold text-sm text-center w-full">{capitalizeFirstLetter(filteredProducts.at(0)?.category ?? '')}</p>
                 </div>
                 {filteredProducts.map((product) => (
@@ -55,7 +56,7 @@ function capitalizeFirstLetter(string: string) {
                         </div>
                         <div className="px-6 pt-1 pb-2">
                         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{product.price}</span>
-                        <a className="text-sm text-gray-600 underline" href={product.link}>{product.link_text}</a>
+                        <Link className="text-sm text-gray-600 underline" href={product.link}>{product.link_text}</Link>
                         </div>
                         {product.tags.length > 0 && (
                             <>
