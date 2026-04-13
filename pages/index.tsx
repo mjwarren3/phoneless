@@ -1,5 +1,5 @@
 import PhoneLayout from '@/layouts/layout'
-import { Camera, Map, NotepadText, Phone } from 'lucide-react'
+import { AlarmClock, BookOpen, Calendar, Camera, Dumbbell, Gamepad2, Map, Music, NotepadText, Phone } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -19,7 +19,41 @@ const apps = [
         "icon": <Phone size={40} />,
         "href": "/phone"
     },
-
+    {
+        "name": "Music",
+        "icon": <Music size={40} />,
+        "href": "/music"
+    },
+    {
+        "name": "Maps",
+        "icon": <Map size={40} />,
+        "href": "/maps"
+    },
+    {
+        "name": "Alarm",
+        "icon": <AlarmClock size={40} />,
+        "href": "/alarm"
+    },
+    {
+        "name": "Books",
+        "icon": <BookOpen size={40} />,
+        "href": "/books"
+    },
+    {
+        "name": "Games",
+        "icon": <Gamepad2 size={40} />,
+        "href": "/games"
+    },
+    {
+        "name": "Fitness",
+        "icon": <Dumbbell size={40} />,
+        "href": "/fitness"
+    },
+    {
+        "name": "Calendar",
+        "icon": <Calendar size={40} />,
+        "href": "/calendar"
+    },
 ]
 
 function page() {
