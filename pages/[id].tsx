@@ -4,6 +4,8 @@ import { Product } from '@/interfaces/Product';
 import PhoneLayout from '@/layouts/layout';
 import { ChevronLeft, MoveLeft } from 'lucide-react';
 import Link from 'next/link';
+import React, { useEffect } from 'react';
+import posthog from 'posthog-js';
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = products.map(product => ({
@@ -40,6 +42,16 @@ function capitalizeFirstLetter(string: string) {
 }
   
   const ProductPage: React.FC<ProductProps> = ({ filteredProducts }) => {
+    const category = filteredProducts.at(0)?.category ?? '';
+
+    useEffect(() => {
+      posthog.capture('category_viewed', {
+        category,
+        product_count: filteredProducts.length,
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <PhoneLayout>
             <div className="w-full grid grid-cols-1 gap-4 px-4 py-8">
@@ -56,7 +68,17 @@ function capitalizeFirstLetter(string: string) {
                         </div>
                         <div className="px-6 pt-1 pb-2">
                         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{product.price}</span>
-                        <Link className="text-sm text-gray-600 underline" href={product.link}>{product.link_text}</Link>
+                        <Link
+                            className="text-sm text-gray-600 underline"
+                            href={product.link}
+                            onClick={() => posthog.capture('product_link_clicked', {
+                                product_name: product.name,
+                                category: product.category,
+                                price: product.price,
+                                link_text: product.link_text,
+                                url: product.link,
+                            })}
+                        >{product.link_text}</Link>
                         </div>
                         {product.tags.length > 0 && (
                             <>

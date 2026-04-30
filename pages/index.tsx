@@ -2,6 +2,7 @@ import PhoneLayout from '@/layouts/layout'
 import { AlarmClock, BookOpen, Calendar, Camera, Dumbbell, Gamepad2, Map, Music, NotepadText, Phone } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import posthog from 'posthog-js'
 
 const apps = [
     {
@@ -61,7 +62,11 @@ function page() {
         <PhoneLayout>
             <div className="grid grid-cols-4 gap-6 px-4 py-12">
                 {apps.map((app) => (
-                    <Link href={app.href} key={app.name}>
+                    <Link
+                        href={app.href}
+                        key={app.name}
+                        onClick={() => posthog.capture('category_clicked', { category: app.name.toLowerCase(), href: app.href })}
+                    >
                         <div className="h-16 w-16 flex flex-col shadow-[0_0_20px_-15px_rgba(0,0,0,1)] rounded-2xl justify-center items-center text-slate-700">
                             {app.icon}
                         </div>
