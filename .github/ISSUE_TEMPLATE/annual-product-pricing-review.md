@@ -1,7 +1,7 @@
 ---
 name: Annual Product Pricing Review
 about: Template issue for PMs to complete during annual review of product pricing
-title: 'RFC: <product> Pricing Review YYYY'
+title: 'RFC: <product> Pricing Review MM-YYYY'
 labels: ''
 assignees: ''
 
